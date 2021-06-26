@@ -39,8 +39,8 @@
     var color = trafo && trafo.color || 'black';
     var W = trafo && trafo.width || 2;
 
-    var fromB = parseFloat(from.style.top) ? null : from.getBoundingClientRect();
-    var toB = parseFloat(to.style.top) ? null : to.getBoundingClientRect();
+    var fromB = from.getBoundingClientRect();
+    var toB = to.getBoundingClientRect();
     var fromBStartY = (fromB ? window.scrollY + fromB.top : parseFloat(from.style.top));
     var fromBStartX = (fromB ? window.scrollX + fromB.left : parseFloat(from.style.left));
     var toBStartY = (toB ? window.scrollY + toB.top : parseFloat(to.style.top));
