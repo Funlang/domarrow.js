@@ -1,4 +1,4 @@
-(()=>{
+((panel)=>{
   function getNumberOrDef(val, def) {
     return typeof val === 'number' && !isNaN(val) ? val : def;
   }
@@ -41,6 +41,14 @@
 
     var fromB = from.getBoundingClientRect();
     var toB = to.getBoundingClientRect();
+    var panelB = panel.getBoundingClientRect()
+    fromB = {left: fromB.left, top: fromB.top, width: fromB.width, height: fromB.height}
+    toB = {left: toB.left, top: toB.top, width: toB.width, height: toB.height}
+    fromB.left -= panelB.left
+    fromB.top -= panelB.top
+    toB.left -= panelB.left
+    toB.top -= panelB.top
+	  
     var fromBStartY = (fromB ? window.scrollY + fromB.top : parseFloat(from.style.top));
     var fromBStartX = (fromB ? window.scrollX + fromB.left : parseFloat(from.style.left));
     var toBStartY = (toB ? window.scrollY + toB.top : parseFloat(to.style.top));
@@ -254,7 +262,14 @@
   var bodyObserver = new MutationObserver(bodyNewElement);
   var connectionObserver = new MutationObserver(changedConnectionTag);
   var connectedObserver = new MutationObserver(changedConnectedTag);
-  document.body && create() || window.addEventListener("load", create);
-})();
+  //document.body && create() || window.addEventListener("load", create);
+	
+  create();
+  return {
+	refresh() {
+		[...document.body.getElementsByTagName('connection')].forEach(repaintWithoutObserve);
+	}
+  }
+});
 
 
