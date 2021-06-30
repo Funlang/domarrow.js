@@ -1,4 +1,4 @@
-((panel)=>{
+window.DOMLineArrow = (panel)=>{
   function getNumberOrDef(val, def) {
     return typeof val === 'number' && !isNaN(val) ? val : def;
   }
@@ -270,6 +270,6 @@
 		[...document.body.getElementsByTagName('connection')].forEach(repaintWithoutObserve);
 	}
   }
-});
+};
 
 
