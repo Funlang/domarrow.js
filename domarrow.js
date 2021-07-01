@@ -41,7 +41,7 @@ window.DOMLineArrow = (panel)=>{
 
     var fromB = from.getBoundingClientRect();
     var toB = to.getBoundingClientRect();
-    var panelB = panel.getBoundingClientRect()
+    var panelB = panel && panel.getBoundingClientRect() || {left: 0, top: 0};
     fromB = {left: fromB.left, top: fromB.top, width: fromB.width, height: fromB.height}
     toB = {left: toB.left, top: toB.top, width: toB.width, height: toB.height}
     fromB.left -= panelB.left
