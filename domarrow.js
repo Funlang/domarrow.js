@@ -131,8 +131,8 @@ window.DOMLineArrow = (panel)=>{
     var fromE = document.querySelector(fromQ);
     var toQ = connectionElement.getAttribute('to');
     var toE = document.querySelector(toQ);
-    connectedObserver.observe(fromE, {attributes:true});
-    connectedObserver.observe(toE, {attributes:true});
+    fromE && connectedObserver.observe(fromE, {attributes:true});
+    toE && connectedObserver.observe(toE, {attributes:true});
 
     var lineE = connectionElement.getElementsByClassName('line')[0];
     if (!lineE) {
@@ -172,7 +172,7 @@ window.DOMLineArrow = (panel)=>{
       textE.innerText = textMessage;
     }
 
-    adjustLine(fromE, toE, lineE, {
+    fromE && toE && adjustLine(fromE, toE, lineE, {
       color: connectionElement.getAttribute('color'),
       onlyVisible: connectionElement.hasAttribute('onlyVisible'),
       fromX: parseFloat(connectionElement.getAttribute('fromX')),
