@@ -140,8 +140,8 @@ window.DOMLineArrow = (panel)=>{
       lineE.classList.add('line');
       connectionElement.appendChild(lineE);
     }
-    var needTail = connectionElement.hasAttribute('tail');
-    var needHead = connectionElement.hasAttribute('head');
+    var needTail = connectionElement.getAttribute('tail') != '0';
+    var needHead = connectionElement.getAttribute('head') != '0';
     var arrows = lineE.getElementsByClassName('arrow');
     var tail = arrows[0];
     var head = arrows[1];
