@@ -269,7 +269,21 @@ window.DOMLineArrow = (panel) => {
         });
     }
 
-    function changedConnectionTag(changes) {
+    let debounce = (fn, ms) => {
+        let timer;
+        return (...args) => {
+            let me = this;
+            let ifn = () => {
+                timer = nil;
+                fn.apply(me, args);
+            };
+            ms && (timer = clearTimeout(timer));
+            timer || (timer = setTimeout(ifn, ms));
+        };
+    };
+
+    function _changedConnectionTag(changes) {
+        connectionObserver.disconnect();
         changes.forEach((e) => {
             var conn = e.target;
             if (conn.tagName.toLowerCase() !== "connection" && e.attributeName === "class");
@@ -278,6 +292,8 @@ window.DOMLineArrow = (panel) => {
             repaintWithoutObserve(conn);
         });
     }
+
+    let changedConnectionTag = debounce(_changedConnectionTag);
 
     function bodyNewElement(changes) {
         changes.forEach((e) => {
