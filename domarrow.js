@@ -274,7 +274,7 @@ window.DOMLineArrow = (panel) => {
         return (...args) => {
             let me = this;
             let ifn = () => {
-                timer = nil;
+                timer = undefined;
                 fn.apply(me, args);
             };
             ms && (timer = clearTimeout(timer));
