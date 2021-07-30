@@ -226,13 +226,13 @@ window.DOMLineArrow = (panel) => {
         connectionObserver.observe(tag, { attributeFilter: [] });
         repaintConnection(tag);
         tag.ob_refcount += 1;
-        tag.ob_refcount >= 0 && connectionObserver.observe(tag, { attributes: true, childList: true, subtree: true });
+        tag.ob_refcount >= 0 && connectionObserver.observe(tag, { attributes: true, childList: 0, subtree: 0 });
     }
 
     function createOne(newElement) {
         connectionElements.push(newElement);
         repaintConnection(newElement);
-        connectionObserver.observe(newElement, { attributes: true, childList: true, subtree: true });
+        connectionObserver.observe(newElement, { attributes: true, childList: 0, subtree: 0 });
     }
 
     function create() {
